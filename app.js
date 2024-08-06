@@ -1,18 +1,15 @@
 const express = require('express');
-const ejs = require('ejs')
+const ejs = require('ejs');
+
+// Linking the page route with app.js
+const router = require('./routes/pages');
+
 const app = express();
-const port = 3000
-app.set('views', "./views")
-app.set("view engine", "ejs")
+const PORT = 3000;
 
-app.get("/home", (req,res)=>{
+// implementing routes using middleware
+app.use(router)
 
-    let message = "Hello world"
-
-    
-    res.render("home", {message})
-})
-
-app.listen(port, ()=>{
-    console.log('Server started on port 3000')
-})
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
